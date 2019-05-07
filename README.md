@@ -43,12 +43,18 @@ Install plugins
 
 `pip install numpy`
 
-## Running The File
+## Usage 
 
 Let's run the file and start converting images!
 
 ```
-cd /folder/where/the/.py/file/is
-python3 nii2png.py
+python3 nii2png.py -i <inputfile> -o <outputfolder>
 ```
-When it asks you for file/folder paths, you can drag and drop the file/folder into the terminal window and hit enter.
+
+or
+
+```
+python3 nii2png.py --input <inputfile> --ouput <outputfolder>
+```
+
+Tip: You can drag and drop the file/folder into the terminal window instead of typing the path
