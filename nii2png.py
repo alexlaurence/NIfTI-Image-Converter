@@ -24,14 +24,14 @@ def convert(argv):
                 sys.exit(2)
         for opt, arg in opts:
                 if opt == '-h':
-                print 'nii2png.py -i <inputfile> -o <outputfile>'
-                 sys.exit()
-              elif opt in ("-i", "--ifile"):
-                 inputfile = arg
-              elif opt in ("-o", "--ofile"):
-                 outputfile = arg
-         print('Input file is "', inputfile)
-         print('Output file is "', outputfile)
+                        print 'nii2png.py -i <inputfile> -o <outputfile>'
+                        sys.exit()
+                elif opt in ("-i", "--input"):
+                        inputfile = arg
+                elif opt in ("-o", "--output"):
+                        outputfile = arg
+        print('Input file is "', inputfile)
+        print('Output file is "', outputfile)
 
         # set fn as your 4d nifti file
         image_array = nibabel.load(inputfile).get_data()
