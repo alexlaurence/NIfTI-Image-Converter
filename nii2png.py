@@ -47,7 +47,7 @@ for j in range(0, volumes):
       scipy.misc.imsave(image_name, data)
       
       #move images to folder
-      src = "/content/" + image_name
+      src = wd + image_name
       shutil.move(src, dst)
       slice_counter += 1
       image_counter += 1
