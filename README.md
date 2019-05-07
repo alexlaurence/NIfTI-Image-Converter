@@ -8,3 +8,11 @@ A lightweight neuroimaging .nii to .png converter that actually works.
 4. Automatically moves all your images into a chosen folder within your working directory.
 
 Unlike other tools out there, this just works.
+
+## Requirements 
+
+* scipy
+* shutil
+* os
+* nibabel
+* numpy
