@@ -11,8 +11,9 @@ import os
 import nibabel
 import numpy
 
-fn = input('Please enter the path of your NIfTI file: ')
-wd = input('Please enter the path of your working directory: ')
+fn = input('Firstly, please enter the path of your NIfTI file: ')
+wd = input('Next, please enter the path of your working directory: ')
+od = input('Finally, please enter the name for your output folder: ')
 
 # set fn as your 4d nifti file
 image_array = nibabel.load(fn).get_data()
@@ -21,7 +22,7 @@ image_array = nibabel.load(fn).get_data()
 nx, ny, nz, nw = image_array.shape
 
 # set destination folder
-dst = wd + "/png_" + fn[:-4]
+dst = wd + "/" + od + "_" + fn[:-4]
 if not os.path.exists(dst):
         os.makedirs(dst)
         print("Created ouput directory: " + dst)
