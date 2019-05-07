@@ -1,6 +1,6 @@
 #!/usr/bin/python3.7
 '''
-NIfTI Image Converter (v0.1.8)
+NIfTI Image Converter (v0.2.0)
 Created by Alexander Laurence
 7 May 2019
 MIT License
@@ -12,13 +12,29 @@ import os
 import nibabel
 import numpy
 
-def convert():
-        fn = input('Firstly, please enter the path of your NIfTI file: ')
-        wd = input('Next, please enter the path of your working directory: ')
-        od = input('Finally, please enter the name for your output folder: ')
+
+def convert(argv):
+        
+        inputfile = ''
+        outputfile = ''
+        try:
+                opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
+        except getopt.GetoptError:
+                print('nii2png.py -i <inputfile> -o <outputfile>')
+                sys.exit(2)
+        for opt, arg in opts:
+                if opt == '-h':
+                print 'nii2png.py -i <inputfile> -o <outputfile>'
+                 sys.exit()
+              elif opt in ("-i", "--ifile"):
+                 inputfile = arg
+              elif opt in ("-o", "--ofile"):
+                 outputfile = arg
+         print('Input file is "', inputfile)
+         print('Output file is "', outputfile)
 
         # set fn as your 4d nifti file
-        image_array = nibabel.load(fn).get_data()
+        image_array = nibabel.load(inputfile).get_data()
 
         # if 4D image inputted
         if len(image_array) == 4:
@@ -26,7 +42,7 @@ def convert():
                 nx, ny, nz, nw = image_array.shape
 
                 # set destination folder
-                dst = wd + "/" + od + "_" + fn[:-4]
+                dst = outputfile + "_" + inputfile[:-4]
                 if not os.path.exists(dst):
                         os.makedirs(dst)
                         print("Created ouput directory: " + dst)
@@ -48,11 +64,11 @@ def convert():
                     data = numpy.rot90(image_array[:, :, i, j])
                     #alternate slices and save as png
                     if (slice_counter % 1) == 0:
-                      image_name = fn[:-4] + "_t" "{:0>3}".format(str(j)) + "_z" + "{:0>3}".format(str(i))+ ".png"
+                      image_name = inputfile[:-4] + "_t" "{:0>3}".format(str(j)) + "_z" + "{:0>3}".format(str(i))+ ".png"
                       scipy.misc.imsave(image_name, data)
 
                       #move images to folder
-                      src = wd + image_name
+                      src = image_name
                       shutil.move(src, dst)
                       slice_counter += 1
                       image_counter += 1
@@ -66,7 +82,7 @@ def convert():
                 nx, ny, nz = image_array.shape
 
                 # set destination folder
-                dst = wd + "/" + od + "_" + fn[:-4]
+                dst = outputfile + "_" + inputfile[:-4]
                 if not os.path.exists(dst):
                         os.makedirs(dst)
                         print("Created ouput directory: " + dst)
@@ -83,11 +99,11 @@ def convert():
                         data = numpy.rot90(image_array[:, :, i])
                         #alternate slices and save as png
                         if (slice_counter % 1) == 0:
-                                image_name = fn[:-4] + "_z" + "{:0>3}".format(str(i))+ ".png"
+                                image_name = inputfile[:-4] + "_z" + "{:0>3}".format(str(i))+ ".png"
                                 scipy.misc.imsave(image_name, data)
 
                                 #move images to folder
-                                src = wd + image_name
+                                src = image_name
                                 shutil.move(src, dst)
                                 slice_counter += 1
                                 image_counter += 1
@@ -95,7 +111,7 @@ def convert():
                 print("Finished converting images") 
         else:
                 print("Not a 3D or 4D Image. Please try again.")
-                convert()
 
 # call the function to start the program
-convert()
+if __name__ == "__main__":
+   convert(sys.argv[1:])
