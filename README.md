@@ -9,10 +9,20 @@ A lightweight neuroimaging .nii to .png converter that actually works.
 
 Unlike other tools out there, this just works.
 
-## Requirements 
+## Environment
+* Python 3.7
 
+## Modules 
 * scipy
 * shutil
 * os
 * nibabel
 * numpy
+
+## Running The File
+
+Open Terminal and 
+
+`cd /folder/where/the/.py/file/is
+python3 nii2png.py
+`
