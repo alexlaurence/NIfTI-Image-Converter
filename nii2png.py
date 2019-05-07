@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-NIfTI Image Converter (v0.1.0)
+NIfTI Image Converter (v0.1.5)
 Created by Alexander Laurence
 7 May 2019
 MIT License
