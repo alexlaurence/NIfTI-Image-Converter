@@ -34,17 +34,21 @@ Install pip
 Install plugins
 
 `pip install scipy`
+
 `pip install shutil`
+
 `pip install os`
+
 `pip install nibabel`
+
 `pip install numpy`
 
 ## Running The File
 
 Let's run the file and start converting images!
 
-`cd /folder/where/the/.py/file/is
-
+```
+cd /folder/where/the/.py/file/is
 python3 nii2png.py
-`
+```
 When it asks you for file/folder paths, you can drag and drop the file/folder into the terminal window and hit enter.
