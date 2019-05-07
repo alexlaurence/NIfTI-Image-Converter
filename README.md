@@ -48,13 +48,13 @@ Install plugins
 Let's run the file and start converting images! Please ensure that your output folder ends with a slash to avoid errors.
 
 ```
-python3 nii2png.py -i <inputfile> -o <outputfolder>
+$ python3 nii2png.py -i <inputfile> -o <outputfolder>
 ```
 
 or
 
 ```
-python3 nii2png.py --input <inputfile> --ouput <outputfolder>
+$ python3 nii2png.py --input <inputfile> --ouput <outputfolder>
 ```
 
 Tip: You can drag and drop the file/folder into the terminal window instead of typing the path
