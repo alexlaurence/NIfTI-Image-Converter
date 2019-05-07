@@ -6,12 +6,8 @@ Created by Alexander Laurence
 MIT License
 '''
 
-import scipy
-import shutil
-import os
-import nibabel
-import numpy
-
+import scipy, numpy, shutil, os, nibabel
+import sys, getopt
 
 def convert(argv):
         
