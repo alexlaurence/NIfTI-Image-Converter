@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-NIfTI Image Converter (v0.1.5)
+NIfTI Image Converter (v0.1.6)
 Created by Alexander Laurence
 7 May 2019
 MIT License
@@ -82,7 +82,7 @@ elif len(image_array) == 3:
                 data = numpy.rot90(image_array[:, :, i])
                 #alternate slices and save as png
                 if (slice_counter % 1) == 0:
-                        image_name = fn[:-4] + "_t" "{:0>3}".format(str(j)) + "_z" + "{:0>3}".format(str(i))+ ".png"
+                        image_name = fn[:-4] + "_z" + "{:0>3}".format(str(i))+ ".png"
                         scipy.misc.imsave(image_name, data)
 
                         #move images to folder
