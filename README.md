@@ -65,18 +65,18 @@ with change directory command
 
 ```
 $ cd ~/images/
-python3 nii2png.py -i brain.nii -o png/
+$ python3 nii2png.py -i brain.nii -o png/
 ```
 
 with full paths
 
 ```
-python3 /users/ernie/images/nii2png.py -i /users/ernie/images/brain.nii -o /users/ernie/images/png/
+$ python3 /users/ernie/images/nii2png.py -i /users/ernie/images/brain.nii -o /users/ernie/images/png/
 ```
 
 with long options
 
 
 ```
-python3 /users/ernie/images/nii2png.py --input /users/ernie/images/brain.nii --output /users/ernie/images/png/
+$ python3 /users/ernie/images/nii2png.py --input /users/ernie/images/brain.nii --output /users/ernie/images/png/
 ```
