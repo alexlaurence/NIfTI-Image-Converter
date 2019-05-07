@@ -45,7 +45,7 @@ Install plugins
 
 ## Usage 
 
-Let's run the file and start converting images!
+Let's run the file and start converting images! Please ensure that your output folder ends with a slash to avoid errors.
 
 ```
 python3 nii2png.py -i <inputfile> -o <outputfolder>
@@ -58,3 +58,25 @@ python3 nii2png.py --input <inputfile> --ouput <outputfolder>
 ```
 
 Tip: You can drag and drop the file/folder into the terminal window instead of typing the path
+
+### Example
+
+with change directory command
+
+```
+$ cd ~/images/
+python3 nii2png.py -i brain.nii -o png/
+```
+
+with full paths
+
+```
+python3 /users/ernie/images/nii2png.py -i /users/ernie/images/brain.nii -o /users/ernie/images/png/
+```
+
+with long options
+
+
+```
+python3 /users/ernie/images/nii2png.py --input /users/ernie/images/brain.nii --output /users/ernie/images/png/
+```
