@@ -57,7 +57,7 @@ On unix systems, Python scripts can be made executable using the following proce
 $ chmod +x nii2png.py
 ```
 
-You can move `nii2png.py` into your bin directory, and it will be runnable from anywhere.
+Optional: You can also move `nii2png.py` into your bin directory, and it will be runnable from anywhere.
 
 
 ## Usage 
