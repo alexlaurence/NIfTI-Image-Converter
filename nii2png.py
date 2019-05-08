@@ -20,7 +20,7 @@ def main(argv):
                 sys.exit(2)
         for opt, arg in opts:
                 if opt == '-h':
-                        print 'nii2png.py -i <inputfile> -o <outputfile>'
+                        print('nii2png.py -i <inputfile> -o <outputfile>')
                         sys.exit()
                 elif opt in ("-i", "--input"):
                         inputfile = arg
