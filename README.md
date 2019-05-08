@@ -49,6 +49,17 @@ Download Latest Build: [Download](https://raw.githubusercontent.com/alexlaurence
 
 Download Stable Release: [Download](https://github.com/alexlaurence/NIfTI-Image-Converter/releases)
 
+## Permissions
+
+On unix systems, Python scripts can be made executable using the following process:
+
+```
+$ chmod +x nii2png.py
+```
+
+You can move `nii2png.py` into your bin directory, and it will be runnable from anywhere.
+
+
 ## Usage 
 
 Let's run the file and start converting images! Please ensure that your output folder ends with a slash to avoid errors.
