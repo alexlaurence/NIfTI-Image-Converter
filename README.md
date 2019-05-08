@@ -1,4 +1,4 @@
-# NIfTI-Image-Converter
+# NIfTI Image Converter (nii2png)
 Rejoice OpenCV users, a lightweight neuroimaging .nii to .png converter that actually works. 
 
 
