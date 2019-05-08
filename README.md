@@ -1,5 +1,5 @@
 # NIfTI-Image-Converter
-A lightweight neuroimaging .nii to .png converter that actually works. 
+Rejoice OpenCV users, a lightweight neuroimaging .nii to .png converter that actually works. 
 
 
 1. Input 4D fMRI NIfTI file (i.e. brain.nii)
