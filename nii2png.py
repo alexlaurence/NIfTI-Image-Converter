@@ -9,7 +9,7 @@ MIT License
 import scipy, numpy, shutil, os, nibabel
 import sys, getopt
 
-def convert(argv):
+def main(argv):
         
         inputfile = ''
         outputfile = ''
