@@ -43,6 +43,12 @@ Install plugins
 
 `pip install numpy`
 
+## Download nii2png
+
+Download Latest Build: [Download](https://raw.githubusercontent.com/alexlaurence/NIfTI-Image-Converter/master/nii2png.py)
+
+Download Stable Release: [Download](https://github.com/alexlaurence/NIfTI-Image-Converter/releases)
+
 ## Usage 
 
 Let's run the file and start converting images! Please ensure that your output folder ends with a slash to avoid errors.
