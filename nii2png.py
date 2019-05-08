@@ -1,6 +1,6 @@
 #!/usr/bin/python3.7
 '''
-NIfTI Image Converter (v0.2.0)
+NIfTI Image Converter (v0.2.5)
 Created by Alexander Laurence
 7 May 2019
 MIT License
@@ -26,22 +26,22 @@ def main(argv):
                         inputfile = arg
                 elif opt in ("-o", "--output"):
                         outputfile = arg
-        print('Input file is "', inputfile)
-        print('Output file is "', outputfile)
+        print('Input file is ', inputfile)
+        print('Output folder is ', outputfile)
 
         # set fn as your 4d nifti file
         image_array = nibabel.load(inputfile).get_data()
+        print(len(image_array.shape))
 
         # if 4D image inputted
-        if len(image_array) == 4:
+        if len(image_array.shape) == 4:
                 # set 4d array dimension values
                 nx, ny, nz, nw = image_array.shape
 
                 # set destination folder
-                dst = outputfile + "_" + inputfile[:-4]
-                if not os.path.exists(dst):
-                        os.makedirs(dst)
-                        print("Created ouput directory: " + dst)
+                if not os.path.exists(outputfile):
+                        os.makedirs(outputfile)
+                        print("Created ouput directory: " + outputfile)
 
                 print("Converting NIfTI to png...")
 
@@ -65,7 +65,7 @@ def main(argv):
 
                       #move images to folder
                       src = image_name
-                      shutil.move(src, dst)
+                      shutil.move(src, outputfile)
                       slice_counter += 1
                       image_counter += 1
                   volume_counter += 1
@@ -73,15 +73,14 @@ def main(argv):
                 print("Finished converting images") 
 
         # else if 3D image inputted
-        elif len(image_array) == 3:
+        elif len(image_array.shape) == 3:
                 # set 4d array dimension values
                 nx, ny, nz = image_array.shape
 
                 # set destination folder
-                dst = outputfile + "_" + inputfile[:-4]
-                if not os.path.exists(dst):
-                        os.makedirs(dst)
-                        print("Created ouput directory: " + dst)
+                if not os.path.exists(outputfile):
+                    os.makedirs(outputfile)
+                    print("Created ouput directory: " + outputfile)
 
                 print("Converting NIfTI to png...")
 
@@ -100,7 +99,7 @@ def main(argv):
 
                                 #move images to folder
                                 src = image_name
-                                shutil.move(src, dst)
+                                shutil.move(src, outputfile)
                                 slice_counter += 1
                                 image_counter += 1
 
@@ -110,4 +109,4 @@ def main(argv):
 
 # call the function to start the program
 if __name__ == "__main__":
-   convert(sys.argv[1:])
+   main(sys.argv[1:])
