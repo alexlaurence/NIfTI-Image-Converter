@@ -1,10 +1,15 @@
 #!/usr/bin/python3.7
-'''
-NIfTI Image Converter (v0.2.5)
-Created by Alexander Laurence
-7 May 2019
-MIT License
-'''
+'''''''''''''''''''''''''''''''''''''''''
+'       nii2png for Python 3.7          '
+'         NIfTI Image Converter         '
+'                v0.2.5                 '
+'                                       '
+'     Written by Alexander Laurence     '
+' http://Celestial.Tokyo/~AlexLaurence/ '
+'    alexander.adamlaurence@gmail.com   '
+'              09 May 2019              '
+'              MIT License              '
+'''''''''''''''''''''''''''''''''''''''''
 
 import scipy, numpy, shutil, os, nibabel
 import sys, getopt
