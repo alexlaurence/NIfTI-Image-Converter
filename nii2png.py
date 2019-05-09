@@ -2,7 +2,7 @@
 '''''''''''''''''''''''''''''''''''''''''
 '       nii2png for Python 3.7          '
 '         NIfTI Image Converter         '
-'                v0.2.5                 '
+'                v0.2.7                 '
 '                                       '
 '     Written by Alexander Laurence     '
 ' http://Celestial.Tokyo/~AlexLaurence/ '
