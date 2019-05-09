@@ -69,7 +69,7 @@ def main(argv):
                                 data = data_rot3_4d
                         elif len(image_array.shape) == 3:
                                 data = data_rot3_3d
-                else
+                else:
                         print('Sorry, I did not understand that. Quitting...')
                         sys.exit()
         elif ask_rotate.lower() == 'n':
@@ -78,7 +78,7 @@ def main(argv):
                         data = data_4d
                 elif len(image_array.shape) == 3:
                         data = data_3d
-        else
+        else:
                 print('Sorry, I did not understand that. Quitting...')
                 sys.exit()
 
