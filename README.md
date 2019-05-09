@@ -10,8 +10,17 @@ Rejoice OpenCV users, a lightweight neuroimaging .nii to .png converter that act
 Unlike other tools out there, this just works.
 
 ## Environment
-* Python 3.7
+* Python 3.7 or...
+* Matlab 2017b
 
+# Matlab Setup
+1. Just load the script and run it.
+2. Select your working directory.
+3. Select your NIfTI image.
+4. Let it run.
+5. Your png files are now in the png folder of your working directory.
+
+# Python Setup
 ## Modules 
 * scipy
 * shutil
