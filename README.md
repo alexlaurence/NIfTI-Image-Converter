@@ -14,24 +14,24 @@ Unlike other tools out there, this just works.
 ## Environment
 * Python 3.7 (or Matlab 2017b)
 
-# Matlab Setup
+# Matlab Usage
 1. Add your script to your path. And run it simply by typing this and hitting enter:
 ```
 nii2png
 ```
-2. Rotate your image if you wish:
+2. Select your working directory.
+3. Select your NIfTI image.
+4. Rotate your image if you wish:
 ```
 >> Would you like to rotate the orientation? (y/n)
 >> y
 >> OK. By 90° 180° or 270°? 
 >> 90
 ```
-3. Select your working directory.
-4. Select your NIfTI image.
 5. Let it run.
 6. Your png files are now in the png folder of your working directory.
 
-## Download
+## Download nii2png for Matlab 2017b
 Download Latest Build: [Download](https://raw.githubusercontent.com/alexlaurence/NIfTI-Image-Converter/master/nii2png.m)
 
 Download Stable Release: [Download](https://github.com/alexlaurence/NIfTI-Image-Converter/releases)
@@ -68,7 +68,7 @@ Install plugins
 
 `pip install numpy`
 
-## Download nii2png
+## Download nii2png for Python
 
 Download Latest Build: [Download](https://raw.githubusercontent.com/alexlaurence/NIfTI-Image-Converter/master/nii2png.py)
 
@@ -87,7 +87,7 @@ Optional: You can also move `nii2png.py` into your bin directory, and it will be
 
 ## Usage 
 
-Let's run the file and start converting images! Please ensure that your output folder ends with a slash to avoid errors.
+1. Let's run the file and start converting images! Please ensure that your output folder ends with a slash to avoid errors.
 
 ```
 $ python3 nii2png.py -i <inputfile> -o <outputfolder>
@@ -100,6 +100,13 @@ $ python3 nii2png.py --input <inputfile> --ouput <outputfolder>
 ```
 
 Tip: You can drag and drop the file/folder into the terminal window instead of typing the path
+
+2. Rotate the images if you wish
+
+```
+$ Would you like to rotate the orientation? (y/n) y
+$ OK. By 90° 180° or 270°? 90
+```
 
 ### Example
 
