@@ -37,6 +37,50 @@ def main(argv):
         # set fn as your 4d nifti file
         image_array = nibabel.load(inputfile).get_data()
         print(len(image_array.shape))
+        
+        # set rotations
+        data_4d = image_array[:, :, i, j]
+        data_rot1_4d = numpy.rot90(image_array[:, :, i, j])
+        data_rot2_4d = numpy.rot90(data_rot1_4d)
+        data_rot3_4d = numpy.rot90(data_rot2_4d)
+        
+        data_3d = image_array[:, :, i]
+        data_rot1_3d = numpy.rot90(image_array[:, :, i])
+        data_rot2_3d = numpy.rot90(data_rot1_3d)
+        data_rot3_3d = numpy.rot90(data_rot2_3d)
+        
+        ask_rotate = input('Would you like to rotate the orientation? (y/n) ')
+        
+        if ask_rotate.lower() == 'y':
+                ask_rotate_num = input('OK. By 90° 180° or 270°? ')
+                
+                if ask_rotate_num == 90:
+                        if len(image_array.shape) == 4:
+                                data = data_rot1_4d
+                        elif len(image_array.shape) == 3:
+                                data = data_rot1_3d
+                elif ask_rotate_num == 180:
+                        if len(image_array.shape) == 4:
+                                data = data_rot2_4d
+                        elif len(image_array.shape) == 3:
+                                data = data_rot2_3d
+                elif ask_rotate_num == 280: 
+                        if len(image_array.shape) == 4:
+                                data = data_rot3_4d
+                        elif len(image_array.shape) == 3:
+                                data = data_rot3_3d
+                else
+                        print('Sorry, I did not understand that. Quitting...')
+                        sys.exit()
+        elif ask_rotate.lower() == 'n':
+                print('OK, I will convert it as it is.')
+                if len(image_array.shape) == 4:
+                        data = data_4d
+                elif len(image_array.shape) == 3:
+                        data = data_3d
+        else
+                print('Sorry, I did not understand that. Quitting...')
+                sys.exit()
 
         # if 4D image inputted
         if len(image_array.shape) == 4:
@@ -61,8 +105,6 @@ def main(argv):
                   slice_counter = 0
                   # iterate through slices
                   for i in range(0, slices):
-                    # set nifti as a numpy array
-                    data = numpy.rot90(image_array[:, :, i, j])
                     #alternate slices and save as png
                     if (slice_counter % 1) == 0:
                       image_name = inputfile[:-4] + "_t" + "{:0>3}".format(str(j)) + "_z" + "{:0>3}".format(str(i))+ ".png"
