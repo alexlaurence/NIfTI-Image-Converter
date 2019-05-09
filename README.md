@@ -14,7 +14,10 @@ Unlike other tools out there, this just works.
 * Python 3.7 (or Matlab 2017b)
 
 # Matlab Setup
-1. Just load the script and run it.
+1. Add your script to your path. And run it simply by typing this and hitting enter:
+```
+nii2png
+```
 2. Select your working directory.
 3. Select your NIfTI image.
 4. Let it run.
