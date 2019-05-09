@@ -26,6 +26,51 @@ else
    image = niftiread(fullfile(path,file));
    image_info = niftiinfo(fullfile(path,file));
    nifti_array = size(image);
+   double = im2double(image);
+   
+    # set rotations
+   data_4d = mat2gray(double(:,:,i,j))
+   data_rot1_4d = rot90(data_4d)
+   data_rot2_4d = rot90(data_rot1_4d)
+   data_rot3_4d = rot90(data_rot2_4d)
+
+   data_3d = mat2gray(double(:,:,i))
+   data_rot1_3d = rot90(data_3d)
+   data_rot2_3d = rot90(data_rot1_3d)
+   data_rot3_3d = rot90(data_rot2_3d)
+
+   ask_rotate = input(' Would you like to rotate the orientation? (y/n) ', 's')
+
+  if lower(ask_rotate) == 'y'
+          ask_rotate_num = input('OK. By 90° 180° or 270°? ', 's')
+
+          if ask_rotate_num == 90
+                  if length(nifti_array) == 4
+                          data = data_rot1_4d;
+                  elseif length(nifti_array) == 3
+                          data = data_rot1_3d;
+          elseif ask_rotate_num == 180
+                  if length(nifti_array) == 4
+                          data = data_rot2_4d;
+                  elseif length(nifti_array) == 3
+                          data = data_rot2_3d;
+            elseif ask_rotate_num == 280
+                  if length(nifti_array) == 4
+                          data = data_rot3_4d;
+                  elseif length(nifti_array) == 3
+                          data = data_rot3_3d;
+          else:
+                  disp('Sorry, I did not understand that. Quitting...')
+                  exit
+  elseif lower(ask_rotate) == 'n'
+          disp('OK, I will convert it as it is.');
+          if length(nifti_array) == 4
+                  data = data_4d;
+          elseif length(nifti_array) == 3
+                  data = data_3d;
+  else:
+          disp('Sorry, I did not understand that. Quitting...')
+          exit
 
    % If this is a 4D NIfTI
    if length(nifti_array) == 4
@@ -50,11 +95,8 @@ else
                     % Set Filename as per slice and vol info
                     filename = file(1:end-4) + "_t" + sprintf('%03d', j) + "_z" + sprintf('%03d', i) + ".png";
                     
-                    % Convert Image to Double
-                    data = im2double(image);
-                    
                     % Write Image
-                    imwrite(rot90(mat2gray(data(:,:,i,j))), char(filename));
+                    imwrite(data, char(filename));
                                         
                     % If we reached the end of the slices
                     if i == slices
@@ -63,11 +105,11 @@ else
                             % Move to the next volume                            
                             j = j + 1;
                             % Write the image
-                            imwrite(rot90(mat2gray(data(:,:,i,j))), char(filename));
+                            imwrite(data, char(filename));
                         % Else if we reached the end of slice and volume
                         else         
                             % Write Image
-                            imwrite(rot90(mat2gray(data(:,:,i,j))), char(filename));
+                            imwrite(data, char(filename));
                             disp('Finished!')
                             return
                         end
@@ -110,11 +152,8 @@ else
                 % Set Filename as per slice and vol info
                 filename = file(1:end-4) + "_z" + sprintf('%03d', i) + ".png";
 
-                % Convert Image to Double
-                data = im2double(image);
-
                 % Write Image
-                imwrite(rot90(mat2gray(data(:,:,i))), char(filename));
+                imwrite(data, char(filename));
 
                 % Move Images To Folder
                 movefile(char(filename),'png');
