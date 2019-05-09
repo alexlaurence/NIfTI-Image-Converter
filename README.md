@@ -85,7 +85,7 @@ $ chmod +x nii2png.py
 Optional: You can also move `nii2png.py` into your bin directory, and it will be runnable from anywhere.
 
 
-## Usage 
+## Python Usage 
 
 1. Let's run the file and start converting images! Please ensure that your output folder ends with a slash to avoid errors.
 
