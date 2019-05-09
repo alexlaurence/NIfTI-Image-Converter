@@ -1,7 +1,7 @@
 # NIfTI Image Converter (nii2png) for Python and Matlab
 Rejoice OpenCV users, a lightweight neuroimaging .nii to .png converter that actually works. 
 
-Now supports both *Python3* and *Matlab 2017b*!
+Now supports both Python3 and Matlab 2017b!
 
 1. Input 4D fMRI NIfTI file (i.e. brain.nii)
 2. Automatically creates .png files for every single slice in every volume.
