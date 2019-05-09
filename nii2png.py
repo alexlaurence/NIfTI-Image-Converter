@@ -60,7 +60,7 @@ def main(argv):
                     data = numpy.rot90(image_array[:, :, i, j])
                     #alternate slices and save as png
                     if (slice_counter % 1) == 0:
-                      image_name = inputfile[:-4] + "_t" "{:0>3}".format(str(j)) + "_z" + "{:0>3}".format(str(i))+ ".png"
+                      image_name = inputfile[:-4] + "_t" + "{:0>3}".format(str(j)) + "_z" + "{:0>3}".format(str(i))+ ".png"
                       scipy.misc.imsave(image_name, data)
 
                       #move images to folder
