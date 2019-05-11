@@ -40,14 +40,14 @@ def main(argv):
         
         # set rotations
         data_4d = image_array[:, :, i, j]
-        data_rot1_4d = numpy.rot90(image_array[:, :, i, j])
-        data_rot2_4d = numpy.rot90(data_rot1_4d)
-        data_rot3_4d = numpy.rot90(data_rot2_4d)
+        data_90_4d = numpy.rot90(image_array[:, :, i, j])
+        data_180_4d = numpy.rot90(data_90_4d)
+        data_270_4d = numpy.rot90(data_180_4d)
         
         data_3d = image_array[:, :, i]
-        data_rot1_3d = numpy.rot90(image_array[:, :, i])
-        data_rot2_3d = numpy.rot90(data_rot1_3d)
-        data_rot3_3d = numpy.rot90(data_rot2_3d)
+        data_90_3d = numpy.rot90(image_array[:, :, i])
+        data_180_3d = numpy.rot90(data_90_3d)
+        data_270_3d = numpy.rot90(data_180_3d)
         
         ask_rotate = input('Would you like to rotate the orientation? (y/n) ')
         
@@ -56,19 +56,19 @@ def main(argv):
                 
                 if ask_rotate_num == 90:
                         if len(image_array.shape) == 4:
-                                data = data_rot1_4d
+                                data = data_90_4d
                         elif len(image_array.shape) == 3:
-                                data = data_rot1_3d
+                                data = data_90_3d
                 elif ask_rotate_num == 180:
                         if len(image_array.shape) == 4:
-                                data = data_rot2_4d
+                                data = data_180_4d
                         elif len(image_array.shape) == 3:
-                                data = data_rot2_3d
-                elif ask_rotate_num == 280: 
+                                data = data_180_3d
+                elif ask_rotate_num == 270: 
                         if len(image_array.shape) == 4:
-                                data = data_rot3_4d
+                                data = data_270_4d
                         elif len(image_array.shape) == 3:
-                                data = data_rot3_3d
+                                data = data_270_3d
                 else:
                         print('Sorry, I did not understand that. Quitting...')
                         sys.exit()
