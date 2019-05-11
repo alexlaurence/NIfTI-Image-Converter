@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %       nii2png for Matlab R2017b       %
 %         NIfTI Image Converter         %
-%                v0.0.1                 %
+%                v0.1.1                 %
 %                                       %
 %     Written by Alexander Laurence     %
 % http://Celestial.Tokyo/~AlexLaurence/ %
@@ -30,14 +30,14 @@ else
    
     # set rotations
    data_4d = mat2gray(double(:,:,i,j))
-   data_rot1_4d = rot90(data_4d)
-   data_rot2_4d = rot90(data_rot1_4d)
-   data_rot3_4d = rot90(data_rot2_4d)
+   data_90_4d = rot90(data_4d)
+   data_180_4d = rot90(data_90_4d)
+   data_270_4d = rot90(data_180_4d)
 
    data_3d = mat2gray(double(:,:,i))
-   data_rot1_3d = rot90(data_3d)
-   data_rot2_3d = rot90(data_rot1_3d)
-   data_rot3_3d = rot90(data_rot2_3d)
+   data_90_3d = rot90(data_3d)
+   data_180_3d = rot90(data_90_3d)
+   data_270_3d = rot90(data_180_3d)
 
    ask_rotate = input(' Would you like to rotate the orientation? (y/n) ', 's')
 
@@ -46,19 +46,19 @@ else
 
           if ask_rotate_num == 90
                   if length(nifti_array) == 4
-                          data = data_rot1_4d;
+                          data = data_90_4d;
                   elseif length(nifti_array) == 3
-                          data = data_rot1_3d;
+                          data = data_90_3d;
           elseif ask_rotate_num == 180
                   if length(nifti_array) == 4
-                          data = data_rot2_4d;
+                          data = data_180_4d;
                   elseif length(nifti_array) == 3
-                          data = data_rot2_3d;
-            elseif ask_rotate_num == 280
+                          data = data_180_3d;
+            elseif ask_rotate_num == 270
                   if length(nifti_array) == 4
-                          data = data_rot3_4d;
+                          data = data_270_4d;
                   elseif length(nifti_array) == 3
-                          data = data_rot3_3d;
+                          data = data_270_3d;
           else:
                   disp('Sorry, I did not understand that. Quitting...')
                   exit
