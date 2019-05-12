@@ -48,15 +48,19 @@ Download Stable Release: [Download](https://github.com/alexlaurence/NIfTI-Image-
 
 For those without Python, Pip or the modules, simply open Terminal and type in the following commands and hit enter.
 
-Install Python
+1. Install Homebrew
+
+`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+
+2. Install Python 3
 
 `brew install python3`
 
-Install pip
+3. Install pip
 
 `sudo easy_install pip`
 
-Install plugins
+4. Install plugins
 
 `pip install scipy`
 
