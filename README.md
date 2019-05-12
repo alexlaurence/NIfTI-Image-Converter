@@ -50,27 +50,35 @@ For those without Python, Pip or the modules, simply open Terminal and type in t
 
 1. Install Homebrew
 
-`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
 
 2. Install Python 3
 
-`brew install python3`
+```
+brew install python3
+```
 
 3. Install pip
 
-`sudo easy_install pip`
+```
+sudo easy_install pip
+```
 
 4. Install plugins
 
-`pip install scipy`
+```
+pip install scipy
 
-`pip install shutil`
+pip install shutil
 
-`pip install os`
+pip install os
 
-`pip install nibabel`
+pip install nibabel
 
-`pip install numpy`
+pip install numpy
+```
 
 ## Download nii2png for Python
 
