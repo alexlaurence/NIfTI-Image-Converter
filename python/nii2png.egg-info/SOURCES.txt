@@ -1,0 +1,6 @@
+README.md
+setup.py
+nii2png.egg-info/PKG-INFO
+nii2png.egg-info/SOURCES.txt
+nii2png.egg-info/dependency_links.txt
+nii2png.egg-info/top_level.txt
