@@ -29,14 +29,6 @@ Download Latest Build: [Download](https://raw.githubusercontent.com/alexlaurence
 Download Stable Release: [Download](https://github.com/alexlaurence/NIfTI-Image-Converter/releases)
 
 # Python Setup
-## Modules 
-* scipy
-* shutil
-* os
-* nibabel
-* numpy
-
-## Basic Setup
 
 For those without Python, Pip or the modules, simply open Terminal and type in the following commands and hit enter.
 
