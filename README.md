@@ -71,7 +71,7 @@ Download Stable Release: [Download](https://github.com/alexlaurence/NIfTI-Image-
 
 ## Permissions
 
-On unix systems, Python scripts can be made executable using the following process:
+If you didn't install nii2png through pip, you may need to grant nii2png.py permission to execute. On unix systems, Python scripts can be made executable using the following process:
 
 ```
 $ chmod +x nii2png.py
