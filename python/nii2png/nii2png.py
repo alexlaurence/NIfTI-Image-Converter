@@ -64,12 +64,6 @@ def main(argv):
                   slice_counter = 0
                   # iterate through slices
                   for i in range(0, slices):
-                      
-                    # set rotations
-                    data = image_array[:, :, i, j]
-                    data_rot90 = numpy.rot90(data)
-                    data_rot180 = numpy.rot90(data_rot90)
-                    data_rot270 = numpy.rot90(data_rot180)
 
                     # rotate or no rotate
                     if (slice_counter % 1) == 0:
@@ -78,11 +72,11 @@ def main(argv):
                             if ask_rotate_num == 90 or ask_rotate_num == 180 or ask_rotate_num == 270:
                                 print('Got it. Rotating...')
                                 if ask_rotate_num == 90:
-                                    data = data_rot90
+                                    data = numpy.rot90(image_array[:, :, i, j])
                                 elif ask_rotate_num == 180:
-                                    data = data_rot180
+                                    data = numpy.rot90(numpy.rot90(image_array[:, :, i, j]))
                                 elif ask_rotate_num == 270:
-                                    data = data_rot270
+                                    data = numpy.rot90(numpy.rot90(numpy.rot90(image_array[:, :, i, j])))
                                 else:
                                     print('Sorry, I did not understand that. Quitting...')
                                     sys.exit()
@@ -124,24 +118,19 @@ def main(argv):
                 slice_counter = 0
                 # iterate through slices
                 for i in range(0, slices):
-                    # set rotations
-                    data = image_array[:, :, i]
-                    data_rot90 = numpy.rot90(data)
-                    data_rot180 = numpy.rot90(data_rot90)
-                    data_rot270 = numpy.rot90(data_rot180)
-                    
-                    # rotate or no rotate
+                    # alternate slices
                     if (slice_counter % 1) == 0:
+                        # rotate or no rotate
                         if ask_rotate.lower() == 'y':
                             ask_rotate_num = input('OK. By 90° 180° or 270°? ')
                             if ask_rotate_num == 90 or ask_rotate_num == 180 or ask_rotate_num == 270:
                                 print('Got it. Rotating...')
                                 if ask_rotate_num == 90:
-                                    data = data_rot90
+                                    data = numpy.rot90(image_array[:, :, i])
                                 elif ask_rotate_num == 180:
-                                    data = data_rot180
+                                    data = numpy.rot90(numpy.rot90(image_array[:, :, i]))
                                 elif ask_rotate_num == 270:
-                                    data = data_rot270
+                                    data = numpy.rot90(numpy.rot90(numpy.rot90(image_array[:, :, i])))
                                 else:
                                     print('Sorry, I did not understand that. Quitting...')
                                     sys.exit()
