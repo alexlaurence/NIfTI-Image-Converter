@@ -1,11 +1,11 @@
 Metadata-Version: 2.1
 Name: nii2png
-Version: 0.2.7
+Version: 0.2.8
 Summary: A lightweight neuroimaging .nii to .png converter
 Home-page: https://github.com/alexlaurence/NIfTI-Image-Converter
 Author: Alexander Laurence
 Author-email: alexander.adamlaurence@gmail.com
-License: UNKNOWN
+License: MIT
 Description: # NIfTI Image Converter (nii2png) for Python and Matlab
         Rejoice OpenCV users, a lightweight neuroimaging .nii to .png converter that actually works. 
         
