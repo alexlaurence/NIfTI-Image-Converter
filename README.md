@@ -24,7 +24,7 @@ nii2png
 6. Your png files are now in the png folder of your working directory.
 
 ## Download nii2png for Matlab 2017b
-Download Latest Build: [Download](https://raw.githubusercontent.com/alexlaurence/NIfTI-Image-Converter/master/nii2png.m)
+Download Latest Build: [Download](https://raw.githubusercontent.com/alexlaurence/NIfTI-Image-Converter/master/matlab/nii2png.m)
 
 Download Stable Release: [Download](https://github.com/alexlaurence/NIfTI-Image-Converter/releases)
 
@@ -65,7 +65,7 @@ pip install nii2png
 ```
 Or alternatively, download the binary files here.
 
-Download Latest Build: [Download](https://raw.githubusercontent.com/alexlaurence/NIfTI-Image-Converter/master/nii2png.py)
+Download Latest Build: [Download](https://raw.githubusercontent.com/alexlaurence/NIfTI-Image-Converter/master/python/nii2png.py)
 
 Download Stable Release: [Download](https://github.com/alexlaurence/NIfTI-Image-Converter/releases)
 
