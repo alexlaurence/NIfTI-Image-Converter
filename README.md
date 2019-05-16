@@ -51,8 +51,6 @@ pip install scipy
 
 pip install shutil
 
-pip install os
-
 pip install nibabel
 
 pip install numpy
