@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7
+
 #########################################
 #       nii2png for Python 3.7          #
 #         NIfTI Image Converter         #
