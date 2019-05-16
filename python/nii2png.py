@@ -70,27 +70,27 @@ def main(argv):
         total_slices = image_array.shape[2]
 
         # iterate through volumes
-        for volume in range(0, total_volumes):
+        for current_volume in range(0, total_volumes):
             slice_counter = 0
             # iterate through slices
-            for slice in range(0, total_slices):
+            for current_slice in range(0, total_slices):
                 if (slice_counter % 1) == 0:
                     # rotate or no rotate
                     if ask_rotate.lower() == 'y':
                         if ask_rotate_num == 90 or ask_rotate_num == 180 or ask_rotate_num == 270:
                             print('Rotating image...')
                             if ask_rotate_num == 90:
-                                data = numpy.rot90(image_array[:, :, slice, volume])
+                                data = numpy.rot90(image_array[:, :, current_slice, current_volume])
                             elif ask_rotate_num == 180:
-                                data = numpy.rot90(numpy.rot90(image_array[:, :, slice, volume]))
+                                data = numpy.rot90(numpy.rot90(image_array[:, :, current_slice, current_volume]))
                             elif ask_rotate_num == 270:
-                                data = numpy.rot90(numpy.rot90(numpy.rot90(image_array[:, :, slice, volume])))
+                                data = numpy.rot90(numpy.rot90(numpy.rot90(image_array[:, :, current_slice, current_volume])))
                     elif ask_rotate.lower() == 'n':
-                        data = image_array[:, :, slice, volume]
+                        data = image_array[:, :, current_slice, current_volume]
                             
                     #alternate slices and save as png
                     print('Saving image...')
-                    image_name = inputfile[:-4] + "_t" + "{:0>3}".format(str(volume+1)) + "_z" + "{:0>3}".format(str(slice+1))+ ".png"
+                    image_name = inputfile[:-4] + "_t" + "{:0>3}".format(str(current_volume+1)) + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
                     scipy.misc.imsave(image_name, data)
                     print('Saved.')
 
@@ -119,25 +119,25 @@ def main(argv):
 
         slice_counter = 0
         # iterate through slices
-        for slice in range(0, total_slices):
+        for current_slice in range(0, total_slices):
             # alternate slices
             if (slice_counter % 1) == 0:
                 # rotate or no rotate
                 if ask_rotate.lower() == 'y':
                     if ask_rotate_num == 90 or ask_rotate_num == 180 or ask_rotate_num == 270:
                         if ask_rotate_num == 90:
-                            data = numpy.rot90(image_array[:, :, slice])
+                            data = numpy.rot90(image_array[:, :, current_slice])
                         elif ask_rotate_num == 180:
-                            data = numpy.rot90(numpy.rot90(image_array[:, :, slice]))
+                            data = numpy.rot90(numpy.rot90(image_array[:, :, current_slice]))
                         elif ask_rotate_num == 270:
-                            data = numpy.rot90(numpy.rot90(numpy.rot90(image_array[:, :, slice])))
+                            data = numpy.rot90(numpy.rot90(numpy.rot90(image_array[:, :, current_slice])))
                 elif ask_rotate.lower() == 'n':
-                    data = image_array[:, :, slice]
+                    data = image_array[:, :, current_slice]
 
                 #alternate slices and save as png
                 if (slice_counter % 1) == 0:
                     print('Saving image...')
-                    image_name = inputfile[:-4] + "_z" + "{:0>3}".format(str(slice+1))+ ".png"
+                    image_name = inputfile[:-4] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
                     scipy.misc.imsave(image_name, data)
                     print('Saved.')
 

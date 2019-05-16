@@ -31,14 +31,16 @@ else
    % ask user to rotate and by how much
    ask_rotate = input(' Would you like to rotate the orientation? (y/n) ', 's');
    if lower(ask_rotate) == 'y'
-       ask_rotate_num = str2double(input('OK. By 90° 180° or 270°? ', 's'));
+       ask_rotate_num = str2num(input('OK. By 90° 180° or 270°? ', 's'));
        if ask_rotate_num == 90 || ask_rotate_num == 180 || ask_rotate_num == 270
-           disp('Got it. Your images will be rotated.');
+           print('Got it. Your images will be rotated.');
        else
            disp('Sorry, I did not understand that. Quitting...');
            exit;
        end
-   elseif lower(ask_rotate) ~= 'n' && lower(ask_rotate) ~= 'y'
+   elseif lower(ask_rotate) == 'n'
+       disp('OK, I will convert it as it is.');
+   else
        disp('Sorry, I did not understand that. Quitting...');
        exit;
    end
@@ -53,7 +55,6 @@ else
        total_volumes = nifti_array(4);
        total_slices = nifti_array(3);
        
-       current_volume = 1;
        disp('Converting NIfTI to png, please wait...')
        % Iterate Through Vol
        while current_volume <= total_volumes
@@ -110,7 +111,7 @@ else
                     percentage = strcat('Please wait. Converting...', ' ', num2str((current_volume/total_volumes)*100), '% Complete');
                     
                     if ((current_volume/total_volumes)*100) == 100
-                        disp('100% Complete! Images successfully converted.');
+                        disp('100% Complete!');
                     else
                         disp(percentage);
                     end                    
@@ -164,8 +165,8 @@ else
 
                 percentage = strcat('Please wait. Converting...', ' ', num2str((current_slice/total_slices)*100), '% Complete');
 
-                if ((current_slice/total_slices)*100) == 100
-                    disp('100% Complete! Images successfully converted');
+                if ((j/volumes)*100) == 100
+                    disp('100% Complete!');
                 else
                     disp(percentage);
                 end                    
