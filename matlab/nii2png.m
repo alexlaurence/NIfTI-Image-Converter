@@ -31,7 +31,7 @@ else
    % ask user to rotate and by how much
    ask_rotate = input(' Would you like to rotate the orientation? (y/n) ', 's');
    if lower(ask_rotate) == 'y'
-       ask_rotate_num = str2double(input('OK. By 90° 180° or 270°? ', 's'));
+       ask_rotate_num = str2double(input('OK. By 90Â° 180Â° or 270Â°? ', 's'));
        if ask_rotate_num == 90 || ask_rotate_num == 180 || ask_rotate_num == 270
            disp('Got it. Your images will be rotated.');
        else
@@ -170,7 +170,7 @@ else
                     disp(percentage);
                 end                    
             end
-            i = i + 1;
+            current_slice  = current_slice  + 1;
         end
    elseif length(nifti_array) ~= 3 || 4
        disp('NIfTI must be 3D or 4D. Please try again.');
