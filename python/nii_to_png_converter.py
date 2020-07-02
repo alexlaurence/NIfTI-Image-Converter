@@ -1,4 +1,4 @@
-""" This code can be used to convert NIfTI image files (.nii or .ni.gz) into .png images. Set the input file path and rotation angle to get the PNGs.
+""" This code can be used to convert single/multiple NIfTI image files (.nii or .ni.gz) into .png images. Set the input file path and rotation angle to get the PNGs.
     base source code https://github.com/alexlaurence/NIfTI-Image-Converter"""
 
 ###########################################
