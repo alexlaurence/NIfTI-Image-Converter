@@ -4,7 +4,7 @@
 ###########################################
 # nii_to_pngs_converter.py for Python 3   #
 #         NIfTI Image Converter           #
-#                v0.2.9                   #                       
+#                                         #                       
 #     Written by Monjoy Saha              #
 #        monjoybme@gmail.com              #
 #          02 July 2020                   #
