@@ -10,10 +10,11 @@
 #          02 July 2020                   #
 #                                         #
 ###########################################
-import scipy.misc
+#import scipy.misc
 import numpy, shutil, os, nibabel
 import sys, getopt
 import argparse
+import imageio
 
 #############################################################
 base_path=os.path.abspath(os.path.dirname(__file__))
@@ -60,7 +61,7 @@ for file in sample_ids:
                 if (slice_counter % 1) == 0:
                     print('Saving image...')
                     image_name = fname[:-4] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
-                    scipy.misc.imsave(image_name, data)
+                    imageio.imwrite(image_name, data)
                     print('Saved.')
                     #move images to folder
                     print('Moving image...')
@@ -88,7 +89,7 @@ for file in sample_ids:
                     if (slice_counter % 1) == 0:
                         print('Saving image...')
                         image_name = fname[:-4] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
-                        scipy.misc.imsave(image_name, data)
+                        imageio.imwrite(image_name, data)
                         print('Saved.')
                         #move images to folder
                         print('Moving image...')
