@@ -38,7 +38,7 @@ def main(argv):
     print('Output folder is ', outputfile)
 
     # set fn as your 4d nifti file
-    image_array = nibabel.load(inputfile).get_data()
+    image_array = nibabel.load(inputfile).get_fdata()
     print(len(image_array.shape))
 
     # ask if rotate
