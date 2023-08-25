@@ -17,11 +17,15 @@ import sys, getopt
 import imageio
 
 
+def normalize(value, orig_min, orig_max, new_min, new_max):
+    return new_min + (value - orig_min) * (new_max - new_min) / (orig_max - orig_min)
+
+
 def main(argv):
     inputfile = ''
     outputfile = ''
     try:
-        opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
+        opts, args = getopt.getopt(argv, "hi:o:", ["ifile=", "ofile="])
     except getopt.GetoptError:
         print('nii2png.py -i <inputfile> -o <outputfile>')
         sys.exit(2)
@@ -40,6 +44,8 @@ def main(argv):
     # set fn as your 4d nifti file
     image_array = nibabel.load(inputfile).get_fdata()
     print(len(image_array.shape))
+    image_array = numpy.vectorize(normalize)(image_array, image_array.min(), image_array.max(), 0, 255)
+    image_array = image_array.astype(numpy.uint8)
 
     # ask if rotate
     ask_rotate = input('Would you like to rotate the orientation? (y/n) ')
@@ -87,17 +93,19 @@ def main(argv):
                             elif ask_rotate_num == 180:
                                 data = numpy.rot90(numpy.rot90(image_array[:, :, current_slice, current_volume]))
                             elif ask_rotate_num == 270:
-                                data = numpy.rot90(numpy.rot90(numpy.rot90(image_array[:, :, current_slice, current_volume])))
+                                data = numpy.rot90(
+                                    numpy.rot90(numpy.rot90(image_array[:, :, current_slice, current_volume])))
                     elif ask_rotate.lower() == 'n':
                         data = image_array[:, :, current_slice, current_volume]
-                            
-                    #alternate slices and save as png
+
+                    # alternate slices and save as png
                     print('Saving image...')
-                    image_name = inputfile[:-4] + "_t" + "{:0>3}".format(str(current_volume+1)) + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
+                    image_name = inputfile[:-4] + "_t" + "{:0>3}".format(
+                        str(current_volume + 1)) + "_z" + "{:0>3}".format(str(current_slice + 1)) + ".png"
                     imageio.imwrite(image_name, data)
                     print('Saved.')
 
-                    #move images to folder
+                    # move images to folder
                     print('Moving files...')
                     src = image_name
                     shutil.move(src, outputfile)
@@ -137,14 +145,14 @@ def main(argv):
                 elif ask_rotate.lower() == 'n':
                     data = image_array[:, :, current_slice]
 
-                #alternate slices and save as png
+                # alternate slices and save as png
                 if (slice_counter % 1) == 0:
                     print('Saving image...')
-                    image_name = inputfile[:-4] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
+                    image_name = inputfile[:-4] + "_z" + "{:0>3}".format(str(current_slice + 1)) + ".png"
                     imageio.imwrite(image_name, data)
                     print('Saved.')
 
-                    #move images to folder
+                    # move images to folder
                     print('Moving image...')
                     src = image_name
                     shutil.move(src, outputfile)
@@ -155,6 +163,7 @@ def main(argv):
     else:
         print('Not a 3D or 4D Image. Please try again.')
 
+
 # call the function to start the program
 if __name__ == "__main__":
-   main(sys.argv[1:])
+    main(sys.argv[1:])
