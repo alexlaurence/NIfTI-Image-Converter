@@ -35,7 +35,8 @@ sample_ids = list(set(source_ids))
 
 for file in sample_ids:
     fname = os.path.basename(file)
-    image_array = nibabel.load(fname+'.nii').get_data()
+    image_nib: nibabel.Nifti1Image = nibabel.load(fname+'.nii')
+    image_array = image_nib.get_fdata()
     print(len(image_array.shape))
     # set destination folder
     if not os.path.exists(base_path+'/'+fname):
