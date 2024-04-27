@@ -11,11 +11,8 @@
 #              MIT License              #
 #########################################
 
-import scipy, numpy, shutil, os, nibabel
+import scipy, numpy, shutil, os, nibabel, imageio
 import sys, getopt
-
-import imageio
-
 
 def main(argv):
     inputfile = ''
@@ -38,7 +35,8 @@ def main(argv):
     print('Output folder is ', outputfile)
 
     # set fn as your 4d nifti file
-    image_array = nibabel.load(inputfile).get_data()
+    image_file = nibabel.load(inputfile)
+    image_array= numpy.asanyarray(image_file.dataobj)
     print(len(image_array.shape))
 
     # ask if rotate
