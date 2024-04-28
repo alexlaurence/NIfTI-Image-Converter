@@ -25,7 +25,7 @@ input_path = args.input_path
 rotation_angle = args.rotation_angle
 ##############################################################
 #get list of nii or nii.gz source files
-source_files = [os.path.join(input_path, f) for f in os.listdir(input_path) if f.endswith(('image_300.nii.gz'))]
+source_files = [os.path.join(input_path, f) for f in os.listdir(input_path) if f.endswith(('.nii', '.nii.gz'))]
 slice_counter = 0
 
 for file in source_files:
@@ -57,7 +57,7 @@ for file in source_files:
                  #alternate slices and save as png
                 if (slice_counter % 1) == 0:
                     print('Saving image...')
-                    image_name = fname[:-4] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
+                    image_name = fname.split('.', 1)[0] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
                     image_name = os.path.join(base_path, fname_noext, image_name)
                     image.imsave(image_name, data, cmap='gray')
                     print('Saved.')
@@ -81,7 +81,7 @@ for file in source_files:
                     #alternate slices and save as png
                     if (slice_counter % 1) == 0:
                         print('Saving image...')
-                        image_name = fname[:-4] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
+                        image_name = fname.split('.', 1)[0] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
                         image_name = os.path.join(base_path, fname_noext, image_name)
                         image.imsave(image_name, data, cmap='gray')
                         print('Saved.')
