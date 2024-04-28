@@ -11,15 +11,13 @@
 #              MIT License              #
 #########################################
 
-import scipy, numpy, shutil, os, nibabel
+import numpy, os, nibabel
 import sys, getopt
-
-import imageio
-
+from matplotlib import image
 
 def main(argv):
     inputfile = ''
-    outputfile = ''
+    outputdir = ''
     try:
         opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
     except getopt.GetoptError:
@@ -32,10 +30,10 @@ def main(argv):
         elif opt in ("-i", "--input"):
             inputfile = arg
         elif opt in ("-o", "--output"):
-            outputfile = arg
+            outputdir = arg
 
     print('Input file is ', inputfile)
-    print('Output folder is ', outputfile)
+    print('Output folder is ', outputdir)
 
     # set fn as your 4d nifti file
     image_nib: nibabel.Nifti1Image = nibabel.load(inputfile)
@@ -64,9 +62,9 @@ def main(argv):
         nx, ny, nz, nw = image_array.shape
 
         # set destination folder
-        if not os.path.exists(outputfile):
-            os.makedirs(outputfile)
-            print("Created ouput directory: " + outputfile)
+        if not os.path.exists(outputdir):
+            os.makedirs(outputdir)
+            print("Created ouput directory: " + outputdir)
 
         print('Reading NIfTI file...')
 
@@ -94,16 +92,10 @@ def main(argv):
                             
                     #alternate slices and save as png
                     print('Saving image...')
-                    image_name = inputfile[:-4] + "_t" + "{:0>3}".format(str(current_volume+1)) + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
-                    imageio.imwrite(image_name, data)
-                    print('Saved.')
-
-                    #move images to folder
-                    print('Moving files...')
-                    src = image_name
-                    shutil.move(src, outputfile)
+                    image_name = os.path.basename(inputfile).split('.', 1)[0] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
+                    image.imsave(os.path.join(outputdir, image_name), data, cmap='gray')
                     slice_counter += 1
-                    print('Moved.')
+                    print('Saved.')
 
         print('Finished converting images')
 
@@ -113,9 +105,9 @@ def main(argv):
         nx, ny, nz = image_array.shape
 
         # set destination folder
-        if not os.path.exists(outputfile):
-            os.makedirs(outputfile)
-            print("Created ouput directory: " + outputfile)
+        if not os.path.exists(outputdir):
+            os.makedirs(outputdir)
+            print("Created ouput directory: " + outputdir)
 
         print('Reading NIfTI file...')
 
@@ -141,16 +133,10 @@ def main(argv):
                 #alternate slices and save as png
                 if (slice_counter % 1) == 0:
                     print('Saving image...')
-                    image_name = inputfile[:-4] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
-                    imageio.imwrite(image_name, data)
-                    print('Saved.')
-
-                    #move images to folder
-                    print('Moving image...')
-                    src = image_name
-                    shutil.move(src, outputfile)
+                    image_name = os.path.basename(inputfile).split('.', 1)[0] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
+                    image.imsave(os.path.join(outputdir, image_name), data, cmap='gray')
                     slice_counter += 1
-                    print('Moved.')
+                    print('Saved.')
 
         print('Finished converting images')
     else:

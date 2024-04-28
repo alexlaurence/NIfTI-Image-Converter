@@ -11,10 +11,8 @@
 #                                         #
 ###########################################
 #import scipy.misc
-import numpy, shutil, os, nibabel
-import sys, getopt
+import numpy, os, nibabel
 import argparse
-import imageio
 from matplotlib import image
 
 #############################################################
