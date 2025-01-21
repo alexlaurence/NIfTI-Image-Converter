@@ -11,10 +11,9 @@
 #                                         #
 ###########################################
 #import scipy.misc
-import numpy, shutil, os, nibabel
-import sys, getopt
+import numpy, os, nibabel
 import argparse
-import imageio
+from matplotlib import image
 
 #############################################################
 base_path=os.path.abspath(os.path.dirname(__file__))
@@ -26,21 +25,19 @@ input_path = args.input_path
 rotation_angle = args.rotation_angle
 ##############################################################
 #get list of nii or nii.gz source files
-source_files = os.listdir(input_path)
+source_files = [os.path.join(input_path, f) for f in os.listdir(input_path) if f.endswith(('.nii', '.nii.gz'))]
 slice_counter = 0
-#identify sample ids and get source ids 
-source_ids = [files[0:8] for files in source_files if files.endswith('.nii')]
 
-sample_ids = list(set(source_ids))
-
-for file in sample_ids:
+for file in source_files:
     fname = os.path.basename(file)
-    image_array = nibabel.load(fname+'.nii').get_data()
+    fname_noext = fname.split('.', 1)[0]
+    image_nib: nibabel.Nifti1Image = nibabel.load(file)
+    image_array = image_nib.get_fdata()
     print(len(image_array.shape))
     # set destination folder
-    if not os.path.exists(base_path+'/'+fname):
-        os.makedirs(base_path+'/'+fname)
-        print("Created ouput directory: " + base_path+'/'+fname)
+    if not os.path.exists(base_path+'/'+fname_noext):
+        os.makedirs(base_path+'/'+fname_noext)
+        print("Created ouput directory: " + base_path+'/'+fname_noext)
     
     # For 3D image inputted    
     if len(image_array.shape) == 3:
@@ -60,15 +57,11 @@ for file in sample_ids:
                  #alternate slices and save as png
                 if (slice_counter % 1) == 0:
                     print('Saving image...')
-                    image_name = fname[:-4] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
-                    imageio.imwrite(image_name, data)
+                    image_name = fname.split('.', 1)[0] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
+                    image_name = os.path.join(base_path, fname_noext, image_name)
+                    image.imsave(image_name, data, cmap='gray')
                     print('Saved.')
-                    #move images to folder
-                    print('Moving image...')
-                    src = image_name
-                    shutil.move(src, base_path+'/'+fname)
                     slice_counter += 1
-                    print('Moved.')
                     print('Finished converting images')
     elif len(image_array.shape) == 4:
         nx, ny, nz, nw = image_array.shape
@@ -88,14 +81,10 @@ for file in sample_ids:
                     #alternate slices and save as png
                     if (slice_counter % 1) == 0:
                         print('Saving image...')
-                        image_name = fname[:-4] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
-                        imageio.imwrite(image_name, data)
+                        image_name = fname.split('.', 1)[0] + "_z" + "{:0>3}".format(str(current_slice+1))+ ".png"
+                        image_name = os.path.join(base_path, fname_noext, image_name)
+                        image.imsave(image_name, data, cmap='gray')
                         print('Saved.')
-                        #move images to folder
-                        print('Moving image...')
-                        src = image_name
-                        shutil.move(src, base_path+'/'+fname)
                         slice_counter += 1
-                        print('Moved.')
                         print('Finished converting images')
 
